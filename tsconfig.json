@@ -14,8 +14,7 @@
 		"resolveJsonModule": true,
 		"isolatedModules": true,
 		"noEmit": true,
-		"jsx": "react-jsx",
-		"types": ["react/next", "react-dom/next"]
+		"jsx": "react-jsx"
 	},
 	"include": ["src"]
 }

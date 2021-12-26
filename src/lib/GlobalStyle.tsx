@@ -14,4 +14,36 @@ export const GlobalStyle = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+
+  /* only number, comma, bold */
+  @font-face {
+    font-family: 'Mitr';
+    font-style: normal;
+    font-weight: bold;
+    src: url('/fonts/Mitr/Mitr-Bold.ttf') format('truetype');
+  }
+
+  /* only alphabet, regular */
+  @font-face {
+    font-family: 'Lobster';
+    font-style: normal;
+    font-weight: regular;
+    src: url('/fonts/Lobster/Lobster-Regular.ttf') format('truetype');
+  }
+
+  /* only alphabet regular */
+  @font-face {
+    font-family: 'Yellowtail';
+    font-style: normal;
+    font-weight: regular;
+    src: url('/fonts/Yellowtail/Yellowtail-Regular.ttf') format('truetype');
+  }
+
+  /* only number, upper, regular */
+  @font-face {
+    font-family: 'BlackHanSans';
+    font-style: normal;
+    font-weight: regular;
+    src: url('/fonts/Black_Han_Sans/BlackHanSans-Regular.ttf') format('truetype');
+  }
 `

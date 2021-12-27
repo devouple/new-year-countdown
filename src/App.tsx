@@ -18,8 +18,8 @@ function App() {
 				{state
 					.toString()
 					.split('')
-					.map((digit, idx) => (
-						<Digit key={idx} digit={parseInt(digit, 10)} />
+						.map((digit, idx, arr) => (
+							<Digit key={arr.length - idx} digit={digit} />
 					))}
 			</Container>
 		</div>

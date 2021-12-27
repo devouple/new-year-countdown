@@ -4,7 +4,7 @@ import { usePrevious } from '../hooks/usePrevious'
 import { fade, rollIn } from '../lib/animations'
 
 interface DigitProps {
-	digit: number
+	digit: string
 }
 
 export const Digit = memo(({ digit }: DigitProps) => {

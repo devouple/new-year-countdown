@@ -4,7 +4,7 @@ import { usePrevious } from '../hooks/usePrevious'
 import { fade, rollIn } from '../lib/animations'
 import { Typography } from './Typography'
 
-interface DigitProps {
+interface SlickDigitProps {
 	digit: string
 }
 
@@ -37,7 +37,7 @@ const DigitValue = styled(Typography)`
 	position: relative;
 `
 
-export const SlickDigit = memo(({ digit }: DigitProps) => {
+export const SlickDigit = memo(({ digit }: SlickDigitProps) => {
 	const prevState = usePrevious(digit)
 
 	return (

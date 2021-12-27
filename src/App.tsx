@@ -27,24 +27,28 @@ function App() {
 	}, [isDone])
 
 	return (
-		<div>
+		<Container>
 			{isDone ? (
 				<Fireworks />
 			) : (
-				<Container>
+				<CountDownContainer>
 					{state
 						.toString()
 						.split('')
 						.map((digit, idx, arr) => (
 							<Digit key={arr.length - idx} digit={digit} />
 						))}
-				</Container>
+				</CountDownContainer>
 			)}
-		</div>
+		</Container>
 	)
 }
 
 const Container = styled.div`
+	height: 100vh;
+`
+
+const CountDownContainer = styled.div`
 	display: flex;
 `
 

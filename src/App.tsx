@@ -1,25 +1,18 @@
-import { Fireworks } from './components/Fireworks'
-import { Typography } from './components/Typography'
+import { useEffect, useState } from 'react'
+import { Digit } from './components/Digit'
 
 function App() {
+	const [state, setState] = useState(0)
+
+	useEffect(() => {
+		setInterval(() => {
+			setState((prev) => prev + 1)
+		}, 1000)
+	}, [])
+
 	return (
 		<div>
-			<Fireworks />
-			<Typography font="BlackHanSans" size="64px">
-				01234567890 ABCDEFGHIJKLMNOPQRSTUVWXYZ
-			</Typography>
-			<br />
-			<Typography font="Lobster" size="64px">
-				ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz
-			</Typography>
-			<br />
-			<Typography font="Mitr" size="64px">
-				01234567890,
-			</Typography>
-			<br />
-			<Typography font="Yellowtail" size="64px">
-				ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz
-			</Typography>
+			<Digit digit={state} />
 		</div>
 	)
 }

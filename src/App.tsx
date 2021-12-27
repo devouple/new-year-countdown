@@ -1,8 +1,9 @@
 import getMonth from 'date-fns/getMonth'
 import { useEffect, useState, useRef } from 'react'
 import styled from 'styled-components'
-import { Digit } from './components/Digit'
+import { SlickDigit } from './components/Digit'
 import { Fireworks } from './components/Fireworks'
+import { Typography } from './components/Typography'
 import { getRemainingSeconds } from './lib/getRemainingSeconds'
 
 function App() {
@@ -31,14 +32,26 @@ function App() {
 			{isDone ? (
 				<Fireworks />
 			) : (
-				<CountDownContainer>
-					{state
-						.toString()
-						.split('')
-						.map((digit, idx, arr) => (
-							<Digit key={arr.length - idx} digit={digit} />
-						))}
-				</CountDownContainer>
+				<>
+					<TitleContainer>
+						<Box>
+							<Typography font="Lobster" size="36px">
+								New Year
+							</Typography>
+							<Typography font="BlackHanSans" size="18px">
+								countdown
+							</Typography>
+						</Box>
+					</TitleContainer>
+					<CountDownContainer>
+						{state
+							.toString()
+							.split('')
+							.map((digit, idx, arr) => (
+								<SlickDigit key={arr.length - idx} digit={digit} />
+							))}
+					</CountDownContainer>
+				</>
 			)}
 		</Container>
 	)
@@ -50,6 +63,37 @@ const Container = styled.div`
 
 const CountDownContainer = styled.div`
 	display: flex;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	transition: transform 0.2s;
+`
+
+const TitleContainer = styled.div`
+	::before {
+		width: 300px;
+		height: 1px;
+		background-color: white;
+		content: '';
+		position: absolute;
+		top: 50%;
+	}
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 64px;
+	position: relative;
+`
+
+const Box = styled.div`
+	background-color: #11213d;
+	padding: 16px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	position: relative;
 `
 
 export default App

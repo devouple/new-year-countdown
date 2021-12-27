@@ -1,19 +1,54 @@
-import { memo } from 'react'
+import { FC, memo } from 'react'
 import styled from 'styled-components'
 import { usePrevious } from '../hooks/usePrevious'
 import { fade, rollIn } from '../lib/animations'
+import { Typography } from './Typography'
 
 interface DigitProps {
 	digit: string
 }
 
-export const Digit = memo(({ digit }: DigitProps) => {
+const Digit: FC = ({ children }) => {
+	return (
+		<DigitContainer>
+			<DigitShadow font="Mitr" size="64px">
+				{children}
+			</DigitShadow>
+			<DigitValue font="Mitr" size="64px">
+				{children}
+			</DigitValue>
+		</DigitContainer>
+	)
+}
+
+const DigitContainer = styled.div`
+	position: relative;
+`
+
+const DigitShadow = styled(Typography)`
+	position: absolute;
+	left: 0px;
+	top: 2px;
+	color: #ea3223;
+	-webkit-text-stroke: 8px #ea3223;
+`
+
+const DigitValue = styled(Typography)`
+	position: relative;
+`
+
+export const SlickDigit = memo(({ digit }: DigitProps) => {
 	const prevState = usePrevious(digit)
 
 	return (
 		<Container key={digit + Math.random()}>
-			<Next>{digit}</Next>
-			<Prev>{prevState}</Prev>
+			<Next>
+				<Digit>{digit}</Digit>
+			</Next>
+
+			<Prev>
+				<Digit>{prevState}</Digit>
+			</Prev>
 		</Container>
 	)
 })

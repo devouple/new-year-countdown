@@ -1,12 +1,13 @@
+import { memo } from 'react'
 import styled from 'styled-components'
 import { usePrevious } from '../hooks/usePrevious'
 import { fade, rollIn } from '../lib/animations'
 
 interface DigitProps {
-	digit: number
+	digit: string
 }
 
-export const Digit = ({ digit }: DigitProps) => {
+export const Digit = memo(({ digit }: DigitProps) => {
 	const prevState = usePrevious(digit)
 
 	return (
@@ -15,7 +16,7 @@ export const Digit = ({ digit }: DigitProps) => {
 			<Prev>{prevState}</Prev>
 		</Container>
 	)
-}
+})
 
 const Container = styled.div`
 	position: relative;

@@ -1,7 +1,7 @@
 import getMonth from 'date-fns/getMonth'
 import { useEffect, useState, useRef } from 'react'
 import styled from 'styled-components'
-import { SlickDigit } from './components/Digit'
+import { SlickDigit } from './components/SlickDigit'
 import { Fireworks } from './components/Fireworks'
 import { Typography } from './components/Typography'
 import { getRemainingSeconds } from './lib/getRemainingSeconds'

@@ -1,8 +1,8 @@
 import getMonth from 'date-fns/getMonth'
 import { useEffect, useState, useRef } from 'react'
 import styled from 'styled-components'
+import { HappyNewYear } from './components/HappyNewYear'
 import { SlickDigit } from './components/SlickDigit'
-import { Fireworks } from './components/Fireworks'
 import { Typography } from './components/Typography'
 import { getRemainingSeconds } from './lib/getRemainingSeconds'
 
@@ -30,7 +30,7 @@ function App() {
 	return (
 		<Container>
 			{isDone ? (
-				<Fireworks />
+				<HappyNewYear />
 			) : (
 				<>
 					<TitleContainer>

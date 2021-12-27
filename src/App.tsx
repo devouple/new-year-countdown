@@ -1,8 +1,10 @@
+import { Fireworks } from './components/Fireworks'
 import { Typography } from './components/Typography'
 
 function App() {
 	return (
 		<div>
+			<Fireworks />
 			<Typography font="BlackHanSans" size="64px">
 				01234567890 ABCDEFGHIJKLMNOPQRSTUVWXYZ
 			</Typography>

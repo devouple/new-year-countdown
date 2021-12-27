@@ -1,20 +1,33 @@
 import { useEffect, useState } from 'react'
+import styled from 'styled-components'
 import { Digit } from './components/Digit'
+import { getRemainingSeconds } from './lib/getRemainingSeconds'
 
 function App() {
-	const [state, setState] = useState(0)
+	const [state, setState] = useState(getRemainingSeconds())
 
 	useEffect(() => {
 		setInterval(() => {
-			setState((prev) => prev + 1)
-		}, 1000)
+			setState(getRemainingSeconds())
+		}, 100)
 	}, [])
 
 	return (
 		<div>
-			<Digit digit={state} />
+			<Container>
+				{state
+					.toString()
+					.split('')
+					.map((digit, idx) => (
+						<Digit key={idx} digit={parseInt(digit, 10)} />
+					))}
+			</Container>
 		</div>
 	)
 }
+
+const Container = styled.div`
+	display: flex;
+`
 
 export default App

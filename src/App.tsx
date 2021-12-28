@@ -7,25 +7,38 @@ import { Typography } from './components/Typography'
 import { getRemainingSeconds } from './lib/getRemainingSeconds'
 
 function App() {
-	const [state, setState] = useState(getRemainingSeconds())
+	const [remainingSeconds, setRemainingSeconds] = useState(
+		getRemainingSeconds()
+	)
 	const [isDone, setIsDone] = useState(getMonth(new Date()) === 1)
-	const ref = useRef<NodeJS.Timer | null>(null)
+	const [width, setWidth] = useState<number>()
+
+	const innerRef = useRef<HTMLDivElement>(null)
+	const intervalRef = useRef<NodeJS.Timer | null>(null)
 
 	useEffect(() => {
-		ref.current = setInterval(() => {
+		intervalRef.current = setInterval(() => {
 			const remainingSeconds = getRemainingSeconds()
 			if (remainingSeconds < 1) {
 				setIsDone(true)
 			}
-			setState(getRemainingSeconds())
+			setRemainingSeconds(getRemainingSeconds())
 		}, 100)
 	}, [])
 
 	useEffect(() => {
-		if (isDone && ref.current) {
-			clearInterval(ref.current)
+		if (isDone && intervalRef.current) {
+			clearInterval(intervalRef.current)
 		}
 	}, [isDone])
+
+	useEffect(() => {
+		if (!innerRef.current) {
+			return
+		}
+
+		setWidth(innerRef.current.offsetWidth)
+	}, [remainingSeconds])
 
 	return (
 		<Container>
@@ -43,13 +56,19 @@ function App() {
 							</Typography>
 						</Box>
 					</TitleContainer>
-					<CountDownContainer>
-						{state
-							.toString()
-							.split('')
-							.map((digit, idx, arr) => (
-								<SlickDigit key={arr.length - idx} digit={digit} />
-							))}
+					<CountDownContainer
+						style={{
+							width,
+						}}
+					>
+						<CountDownInner ref={innerRef}>
+							{remainingSeconds
+								.toString()
+								.split('')
+								.map((digit, idx, arr) => (
+									<SlickDigit key={arr.length - idx} digit={digit} />
+								))}
+						</CountDownInner>
 					</CountDownContainer>
 				</>
 			)}
@@ -62,12 +81,16 @@ const Container = styled.div`
 `
 
 const CountDownContainer = styled.div`
-	display: flex;
 	position: absolute;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	transition: transform 0.2s;
+	transition: width 0.2s;
+`
+
+const CountDownInner = styled.div`
+	display: flex;
+	width: fit-content;
 `
 
 const TitleContainer = styled.div`

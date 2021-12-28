@@ -20,7 +20,7 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Mitr';
     font-style: normal;
     font-weight: bold;
-    src: url('/fonts/Mitr/Mitr-Bold.ttf') format('truetype');
+    src: url('fonts/Mitr/Mitr-Bold.ttf') format('truetype');
   }
 
   /* only alphabet, regular */
@@ -28,7 +28,7 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Lobster';
     font-style: normal;
     font-weight: regular;
-    src: url('/fonts/Lobster/Lobster-Regular.ttf') format('truetype');
+    src: url('fonts/Lobster/Lobster-Regular.ttf') format('truetype');
   }
 
   /* only alphabet regular */
@@ -36,7 +36,7 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Yellowtail';
     font-style: normal;
     font-weight: regular;
-    src: url('/fonts/Yellowtail/Yellowtail-Regular.ttf') format('truetype');
+    src: url('fonts/Yellowtail/Yellowtail-Regular.ttf') format('truetype');
   }
 
   /* only number, upper, regular */
@@ -44,6 +44,6 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'BlackHanSans';
     font-style: normal;
     font-weight: regular;
-    src: url('/fonts/Black_Han_Sans/BlackHanSans-Regular.ttf') format('truetype');
+    src: url('fonts/Black_Han_Sans/BlackHanSans-Regular.ttf') format('truetype');
   }
 `

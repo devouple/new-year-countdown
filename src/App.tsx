@@ -7,26 +7,28 @@ import { Typography } from './components/Typography'
 import { getRemainingSeconds } from './lib/getRemainingSeconds'
 
 function App() {
-	const [state, setState] = useState(getRemainingSeconds())
+	const [remainingSeconds, setRemainingSeconds] = useState(
+		getRemainingSeconds()
+	)
 	const [isDone, setIsDone] = useState(getMonth(new Date()) === 1)
 	const [width, setWidth] = useState<number>()
 
 	const innerRef = useRef<HTMLDivElement>(null)
-	const ref = useRef<NodeJS.Timer | null>(null)
+	const intervalRef = useRef<NodeJS.Timer | null>(null)
 
 	useEffect(() => {
-		ref.current = setInterval(() => {
+		intervalRef.current = setInterval(() => {
 			const remainingSeconds = getRemainingSeconds()
 			if (remainingSeconds < 1) {
 				setIsDone(true)
 			}
-			setState(getRemainingSeconds())
+			setRemainingSeconds(getRemainingSeconds())
 		}, 100)
 	}, [])
 
 	useEffect(() => {
-		if (isDone && ref.current) {
-			clearInterval(ref.current)
+		if (isDone && intervalRef.current) {
+			clearInterval(intervalRef.current)
 		}
 	}, [isDone])
 
@@ -36,7 +38,7 @@ function App() {
 		}
 
 		setWidth(innerRef.current.offsetWidth)
-	}, [state])
+	}, [remainingSeconds])
 
 	return (
 		<Container>
@@ -60,7 +62,7 @@ function App() {
 						}}
 					>
 						<CountDownInner ref={innerRef}>
-							{state
+							{remainingSeconds
 								.toString()
 								.split('')
 								.map((digit, idx, arr) => (

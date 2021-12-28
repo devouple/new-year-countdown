@@ -9,6 +9,9 @@ import { getRemainingSeconds } from './lib/getRemainingSeconds'
 function App() {
 	const [state, setState] = useState(getRemainingSeconds())
 	const [isDone, setIsDone] = useState(getMonth(new Date()) === 1)
+	const [width, setWidth] = useState<number>()
+
+	const innerRef = useRef<HTMLDivElement>(null)
 	const ref = useRef<NodeJS.Timer | null>(null)
 
 	useEffect(() => {
@@ -27,6 +30,14 @@ function App() {
 		}
 	}, [isDone])
 
+	useEffect(() => {
+		if (!innerRef.current) {
+			return
+		}
+
+		setWidth(innerRef.current.offsetWidth)
+	}, [state])
+
 	return (
 		<Container>
 			{isDone ? (
@@ -43,13 +54,19 @@ function App() {
 							</Typography>
 						</Box>
 					</TitleContainer>
-					<CountDownContainer>
-						{state
-							.toString()
-							.split('')
-							.map((digit, idx, arr) => (
-								<SlickDigit key={arr.length - idx} digit={digit} />
-							))}
+					<CountDownContainer
+						style={{
+							width,
+						}}
+					>
+						<CountDownInner ref={innerRef}>
+							{state
+								.toString()
+								.split('')
+								.map((digit, idx, arr) => (
+									<SlickDigit key={arr.length - idx} digit={digit} />
+								))}
+						</CountDownInner>
 					</CountDownContainer>
 				</>
 			)}
@@ -62,12 +79,16 @@ const Container = styled.div`
 `
 
 const CountDownContainer = styled.div`
-	display: flex;
 	position: absolute;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	transition: transform 0.2s;
+	transition: width 0.2s;
+`
+
+const CountDownInner = styled.div`
+	display: flex;
+	width: fit-content;
 `
 
 const TitleContainer = styled.div`

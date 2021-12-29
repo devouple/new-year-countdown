@@ -77,7 +77,7 @@ function App() {
 }
 
 const Container = styled.div`
-	height: 100vh;
+	height: calc(100vh - 64px);
 `
 
 const CountDownContainer = styled.div`

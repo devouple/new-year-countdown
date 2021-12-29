@@ -41,7 +41,7 @@ function App() {
 	}, [remainingSeconds])
 
 	return (
-		<Container>
+		<div>
 			{isDone ? (
 				<HappyNewYear />
 			) : (
@@ -72,13 +72,9 @@ function App() {
 					</CountDownContainer>
 				</>
 			)}
-		</Container>
+		</div>
 	)
 }
-
-const Container = styled.div`
-	height: calc(100vh - 64px);
-`
 
 const CountDownContainer = styled.div`
 	position: absolute;

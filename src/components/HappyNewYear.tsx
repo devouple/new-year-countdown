@@ -22,7 +22,7 @@ export const HappyNewYear = () => {
 					<YearShadow font="BlackHanSans" size="96px">
 						{year}
 					</YearShadow>
-					<Year font="BlackHanSans" size="96px">
+					<Year font="BlackHanSans" size="96px" className="result">
 						{year}
 					</Year>
 				</YearContainer>

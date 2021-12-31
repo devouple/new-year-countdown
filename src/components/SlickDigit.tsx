@@ -8,10 +8,10 @@ interface SlickDigitProps {
 	digit: string
 }
 
-const Digit: FC = ({ children }) => {
+const Digit: FC<{ className?: string }> = ({ className, children }) => {
 	return (
 		<DigitContainer>
-			<DigitShadow font="Mitr" size="64px">
+			<DigitShadow font="Mitr" size="64px" className={className}>
 				{children}
 			</DigitShadow>
 			<DigitValue font="Mitr" size="64px">
@@ -43,7 +43,7 @@ export const SlickDigit = memo(({ digit }: SlickDigitProps) => {
 	return (
 		<Container key={digit + Math.random()}>
 			<Next>
-				<Digit>{digit}</Digit>
+				<Digit className="timer_value">{digit}</Digit>
 			</Next>
 
 			<Prev>

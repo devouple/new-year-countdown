@@ -10,7 +10,7 @@ function App() {
 	const [remainingSeconds, setRemainingSeconds] = useState(
 		getRemainingSeconds()
 	)
-	const [isDone, setIsDone] = useState(getMonth(new Date()) === 1)
+	const [isDone, setIsDone] = useState(getMonth(new Date()) === 0)
 	const [width, setWidth] = useState<number>()
 
 	const innerRef = useRef<HTMLDivElement>(null)

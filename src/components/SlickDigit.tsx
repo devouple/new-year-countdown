@@ -56,6 +56,7 @@ export const SlickDigit = memo(({ digit }: SlickDigitProps) => {
 const Container = styled.div`
 	position: relative;
 	z-index: -1;
+	transform: translateY(-100%);
 	animation: ${rollIn} 0.5s ease-in-out forwards;
 `
 
